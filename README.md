@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # README
 
 ## Reporte de reproducibilidad del artículo:
@@ -61,6 +60,3 @@ Bibliotecólogo Encargado de Tecnología y servicios digitales de la Unidad de B
 ## Licencia
 
 Este trabajo se distribuye bajo licencia [CC BY-NC 4.0] (https://creativecommons.org/licenses/by-nc/4.0/deed.es), en coherencia con los principios de ciencia abierta discutidos en el reporte.
-=======
-# ciencia-abierta
->>>>>>> 49ae81d9d412a039dd2712ce4b442a2d9de7a17e
