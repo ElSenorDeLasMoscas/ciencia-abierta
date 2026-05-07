@@ -34,7 +34,7 @@ Este trabajo fue realizado en el marco del curso de **Ciencia Abierta** del Mag√
 1. Clonar este repositorio:
 
 ```bash
-git clone https://github.com/[USUARIO]/reporte-reproducibilidad.git
+git clone https://github.com/ElSenorDeLasMoscas/reporte-reproducibilidad.git
 cd reporte-reproducibilidad-missau
 ```
 
