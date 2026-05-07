@@ -9,8 +9,8 @@ Este trabajo fue realizado en el marco del curso de **Ciencia Abierta** del Mag�
 ## Estructura del repositorio
 
 ```
-├── reporte_reproducibilidad.qmd   # Documento principal (Quarto)
-├── script_bibliometrix.R          # Script de R utilizado en la reproducción
+├── reproducibilidad.qmd           # Documento principal (Quarto)
+├── bibliometrix.R                 # Script de R utilizado en la reproducción
 ├── scopus.bib                     # Metadatos exportados de Scopus (formato BibTeX)
 ├── wos.txt                        # Metadatos exportados de WOS (formato texto plano)
 ├── img/                           # Imágenes del paper original y reproducciones
