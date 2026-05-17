@@ -2397,48 +2397,50 @@ Figura 3: Figura 6.
 <ol start="4" type="1">
 <li>Finalmente se replican las figuras 5 y 6, correspondientes a las redes de co-ocurrencia de palabras clave de l_s autor_s a través de las funciones de “network matrix”, para luego graficar estas redes de manera separada creando un plot.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">##análisis. Figura 5 y 6----</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">###Co-ocurrencia scopus.bib----</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>NetMatrix_scopus <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(scopus_df, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="do">###Co-ocurrencia wos.txt----</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>NetMatrix_wos <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(wos_df, </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="do">###Graficar red scopus----</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>net_plot_scopus <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_scopus, </span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,             <span class="co"># Número de palabras principales a mostrar</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 5. Red de co-ocurrencia de palabras clave de autor_s. Scopus&quot;</span>, </span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="co"># Algoritmo de distribución</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,<span class="co"># Tamaño de los nodos</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,    <span class="co"># Tamaño de la letra</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,       <span class="co"># Grosor de las líneas de conexión</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>) <span class="co"># Para que agrupe por colores</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="do">###Graficar red wos----</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>net_plot_wos <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_wos, </span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,             <span class="co"># Número de palabras principales a mostrar</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 6. Red de co-ocurrencia de palabras clave de autor_s. Web of Science (WOS)&quot;</span>, </span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="co"># Algoritmo de distribución</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,<span class="co"># Tamaño de los nodos</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,    <span class="co"># Tamaño de la letra</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,       <span class="co"># Grosor de las líneas de conexión</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>) <span class="co"># Para que agrupe por colores (clusters)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hide</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">##análisis. Figura 5 y 6----</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">###Co-ocurrencia scopus.bib----</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>NetMatrix_scopus <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(scopus_df, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="do">###Co-ocurrencia wos.txt----</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>NetMatrix_wos <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(wos_df, </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                           <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="do">###Graficar red scopus----</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>net_plot_scopus <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_scopus, </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,             <span class="co"># Número de palabras principales a mostrar</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 5. Red de co-ocurrencia de palabras clave de autor_s. Scopus&quot;</span>, </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="co"># Algoritmo de distribución</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,<span class="co"># Tamaño de los nodos</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,    <span class="co"># Tamaño de la letra</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,       <span class="co"># Grosor de las líneas de conexión</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>) <span class="co"># Para que agrupe por colores</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="do">###Graficar red wos----</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>net_plot_wos <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_wos, </span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,             <span class="co"># Número de palabras principales a mostrar</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 6. Red de co-ocurrencia de palabras clave de autor_s. Web of Science (WOS)&quot;</span>, </span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="co"># Algoritmo de distribución</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,<span class="co"># Tamaño de los nodos</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,    <span class="co"># Tamaño de la letra</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,       <span class="co"># Grosor de las líneas de conexión</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>) <span class="co"># Para que agrupe por colores (clusters)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="resultados-de-reproductibilidad" class="level1" data-number="4">
@@ -2540,50 +2542,28 @@ Figura 3: Figura 6.
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrix)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>scopus_raw <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="at">file =</span> <span class="st">&quot;scopus.bib&quot;</span>, <span class="at">dbsource =</span> <span class="st">&quot;scopus&quot;</span>, <span class="at">format =</span> <span class="st">&quot;bibtex&quot;</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Converting your scopus collection into a bibliographic dataframe
-
-
-Warning:
-In your file, some mandatory metadata are missing. Bibliometrix functions may not work properly!
-
-Please, take a look at the vignettes:
-- &#39;Data Importing and Converting&#39; (https://www.bibliometrix.org/vignettes/Data-Importing-and-Converting.html)
-- &#39;A brief introduction to bibliometrix&#39; (https://www.bibliometrix.org/vignettes/Introduction_to_bibliometrix.html)
-
-
-Missing fields:  CR 
-Done!
-
-
-Generating affiliation field tag AU_UN from C1:  Done!</code></pre>
-</div>
-<details class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scopus_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(scopus_raw, PY <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> PY <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Red de co-ocurrencia</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>NetMatrix_scopus <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(scopus_df, </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>net_plot_scopus <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_scopus, </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 5. Red de co-ocurrencia. Scopus&quot;</span>, </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>,</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>scopus_raw <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="at">file =</span> <span class="st">&quot;scopus.bib&quot;</span>, <span class="at">dbsource =</span> <span class="st">&quot;scopus&quot;</span>, <span class="at">format =</span> <span class="st">&quot;bibtex&quot;</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>scopus_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(scopus_raw, PY <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> PY <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Red de co-ocurrencia</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>NetMatrix_scopus <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(scopus_df, </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>net_plot_scopus <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_scopus, </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 5. Red de co-ocurrencia. Scopus&quot;</span>, </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2609,43 +2589,31 @@ Figura 4: Figura 5_reproducción (Elaboración propia, 2026).
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrix)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>wos_raw <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="at">file =</span> <span class="st">&quot;wos.txt&quot;</span>, <span class="at">dbsource =</span> <span class="st">&quot;wos&quot;</span>, <span class="at">format =</span> <span class="st">&quot;plaintext&quot;</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Converting your wos collection into a bibliographic dataframe
-
-Done!
-
-
-Generating affiliation field tag AU_UN from C1:  Done!</code></pre>
-</div>
-<details class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wos_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(wos_raw, PY <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> PY <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Red de co-ocurrencia</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>NetMatrix_wos <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(wos_df, </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>net_plot_wos <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_wos, </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 6. Red de co-ocurrencia. WOS&quot;</span>, </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrix)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>wos_raw <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="at">file =</span> <span class="st">&quot;wos.txt&quot;</span>, <span class="at">dbsource =</span> <span class="st">&quot;wos&quot;</span>, <span class="at">format =</span> <span class="st">&quot;plaintext&quot;</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>wos_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(wos_raw, PY <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> PY <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Red de co-ocurrencia</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>NetMatrix_wos <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(wos_df, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>net_plot_wos <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_wos, </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 6. Red de co-ocurrencia. WOS&quot;</span>, </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2690,83 +2658,83 @@ Figura 5: Figura 6_reproducción (Elaboración propia, 2026).
 </section>
 <section id="script-completo" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Script completo</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Bibliometrix----</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">##llamar bibliometrix----</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrix)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="do">##ingresar a interfaz web----</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">biblioshiny</span>()</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="do">##Carga y procesamiento inicial----</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="do">###cargar wos.txt y scopus.bib ----</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>wos_raw <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="at">file =</span> <span class="st">&quot;wos.txt&quot;</span>, <span class="at">dbsource =</span> <span class="st">&quot;wos&quot;</span>, <span class="at">format =</span> <span class="st">&quot;plaintext&quot;</span>)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>scopus_raw <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="at">file =</span> <span class="st">&quot;scopus.bib&quot;</span>, <span class="at">dbsource =</span> <span class="st">&quot;scopus&quot;</span>, <span class="at">format =</span> <span class="st">&quot;bibtex&quot;</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="do">###Filtrar 2017-2022</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>wos_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(wos_raw, PY <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> PY <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>scopus_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(scopus_raw, PY <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> PY <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="do">###Combinar df---- </span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">mergeDbSources</span>(wos_df, scopus_df, <span class="at">remove.duplicated =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="do">##Analisis. Tabla 2----</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="do">###Analisis merged_df----</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">biblioAnalysis</span>(merged_data)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="do">###Análisis Scopus_df ----</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>results_scopus <span class="ot">&lt;-</span> <span class="fu">biblioAnalysis</span>(scopus_df)</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results_scopus)</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="do">###Análisis WoS_df----</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>results_wos <span class="ot">&lt;-</span> <span class="fu">biblioAnalysis</span>(wos_df)</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results_wos)</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="do">##Analisis. Figura 5 y 6----</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="do">###Co-ocurrencia scopus.bib----</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>NetMatrix_scopus <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(scopus_df, </span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>                           <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="do">###Co-ocurrencia wos.txt----</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>NetMatrix_wos <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(wos_df, </span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>                           <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="do">###Graficar red scopus----</span></span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>net_plot_scopus <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_scopus, </span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,             <span class="co"># Número de palabras principales a mostrar</span></span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 5. Red de co-ocurrencia de palabras clave de autor_s. Scopus&quot;</span>, </span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="co"># Algoritmo de distribución</span></span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,<span class="co"># Tamaño de los nodos</span></span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,    <span class="co"># Tamaño de la letra</span></span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,       <span class="co"># Grosor de las líneas de conexión</span></span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>) <span class="co"># Para que agrupe por colores</span></span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="do">###Graficar red wos----</span></span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>net_plot_wos <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_wos, </span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,             <span class="co"># Número de palabras principales a mostrar</span></span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 6. Red de co-ocurrencia de palabras clave de autor_s. Web of Science (WOS)&quot;</span>, </span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="co"># Algoritmo de distribución</span></span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,<span class="co"># Tamaño de los nodos</span></span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,    <span class="co"># Tamaño de la letra</span></span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,       <span class="co"># Grosor de las líneas de conexión</span></span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>) <span class="co"># Para que agrupe por colores (clusters)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Bibliometrix----</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##llamar bibliometrix----</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrix)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">##ingresar a interfaz web----</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">biblioshiny</span>()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">##Carga y procesamiento inicial----</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="do">###cargar wos.txt y scopus.bib ----</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>wos_raw <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="at">file =</span> <span class="st">&quot;wos.txt&quot;</span>, <span class="at">dbsource =</span> <span class="st">&quot;wos&quot;</span>, <span class="at">format =</span> <span class="st">&quot;plaintext&quot;</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>scopus_raw <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="at">file =</span> <span class="st">&quot;scopus.bib&quot;</span>, <span class="at">dbsource =</span> <span class="st">&quot;scopus&quot;</span>, <span class="at">format =</span> <span class="st">&quot;bibtex&quot;</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="do">###Filtrar 2017-2022</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>wos_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(wos_raw, PY <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> PY <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>scopus_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(scopus_raw, PY <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> PY <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="do">###Combinar df---- </span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">mergeDbSources</span>(wos_df, scopus_df, <span class="at">remove.duplicated =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="do">##Analisis. Tabla 2----</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="do">###Analisis merged_df----</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">biblioAnalysis</span>(merged_data)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="do">###Análisis Scopus_df ----</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>results_scopus <span class="ot">&lt;-</span> <span class="fu">biblioAnalysis</span>(scopus_df)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results_scopus)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="do">###Análisis WoS_df----</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>results_wos <span class="ot">&lt;-</span> <span class="fu">biblioAnalysis</span>(wos_df)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results_wos)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="do">##Analisis. Figura 5 y 6----</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="do">###Co-ocurrencia scopus.bib----</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>NetMatrix_scopus <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(scopus_df, </span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>                           <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="do">###Co-ocurrencia wos.txt----</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>NetMatrix_wos <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(wos_df, </span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>                           <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, </span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>, </span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="do">###Graficar red scopus----</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>net_plot_scopus <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_scopus, </span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,             <span class="co"># Número de palabras principales a mostrar</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 5. Red de co-ocurrencia de palabras clave de autor_s. Scopus&quot;</span>, </span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="co"># Algoritmo de distribución</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,<span class="co"># Tamaño de los nodos</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,    <span class="co"># Tamaño de la letra</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,       <span class="co"># Grosor de las líneas de conexión</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>) <span class="co"># Para que agrupe por colores</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="do">###Graficar red wos----</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>net_plot_wos <span class="ot">&lt;-</span> <span class="fu">networkPlot</span>(NetMatrix_wos, </span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>                        <span class="at">n =</span> <span class="dv">40</span>,             <span class="co"># Número de palabras principales a mostrar</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>                        <span class="at">Title =</span> <span class="st">&quot;Figura 6. Red de co-ocurrencia de palabras clave de autor_s. Web of Science (WOS)&quot;</span>, </span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="co"># Algoritmo de distribución</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="cn">TRUE</span>,<span class="co"># Tamaño de los nodos</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size.cex =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>                        <span class="at">remove.multiple =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labelsize =</span> <span class="fl">0.8</span>,    <span class="co"># Tamaño de la letra</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>                        <span class="at">edgesize =</span> <span class="dv">3</span>,       <span class="co"># Grosor de las líneas de conexión</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>                        <span class="at">cluster =</span> <span class="st">&quot;walktrap&quot;</span>) <span class="co"># Para que agrupe por colores (clusters)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 
 </main>
