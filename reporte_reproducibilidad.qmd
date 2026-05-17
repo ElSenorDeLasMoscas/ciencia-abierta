@@ -1,13 +1,59 @@
 ---
 title: "Reporte de Reproducibilidad"
+subtitle: "Artículo: The Role of Social Sciences in the Study of Misinformation"
 author:
-  - "[Merchan Farfán, Cristóbal]"
+  - name: "Merchan Farfán, Cristóbal"
+    email: "cristobal.merchan98@hotmail.com"
+    affiliations:
+      - ref: 1
+affiliations:
+  - id: 1
+    name: Facultad de Ciencias Sociales, Universidad de Chile
 date: "2026-05-05"
-lang: es
+lang: "es"
+fontsize: 13pt
 format:
-  pdf:
+  html:
+    embed-resources: true
+    code-fold: true
+    code-summary: "Mostrar el código"
     toc: true
+    toc-location: right
+    toc-depth: 2
+    toc-expand: true
+    toc-title: Contenidos
+    number-sections: true
+    number-depth: 3
+    theme:
+        - libs/ocs.scss
+    code-link: true
+    title-block-banner: true
+    include-in-header:
+      text: |
+        <style>
+          h1.title {
+            color: #ffffff !important;
+          }
+          .subtitle {
+            color: #ffffff !important;
+          }
+        </style>
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 8,
+  fig.height = 5,
+  out.width = "80%"
+)
+
+# Cargar paquetes
+library(bibliometrix)
+```
 
 # 1 Artículo seleccionado
 
